@@ -12,8 +12,8 @@ use Livewire\WithFileUploads;
 class PokemonManager extends Component
 {
     use WithFileUploads;
-
-    public $pokemons, $name, $hp, $weight, $height, $type1, $type2, $image, $pokemon_id;
+    public $image;
+    public $pokemons, $name, $hp, $weight, $height, $type1, $type2, $pokemon_id;
     public $isOpen = 0;
 
     public function render()
@@ -32,28 +32,20 @@ class PokemonManager extends Component
 
     public function store()
     {
-        $this->validate([
+        $validatedData = $this->validate([
             'name' => 'required',
             'hp' => 'required|numeric',
             'weight' => 'required|numeric',
             'height' => 'required|numeric',
             'type1' => 'nullable',
             'type2' => 'nullable',
-            'image' => 'image|max:10024',
+            'image' => 'image|mimes:jpeg,png,svg,jpg,gif|max:10024',
         ]);
 
-        $imagePath = $this->image->store('public/images');
+        $imageName = $this->image->store("images", 'public');
+        $validatedData['image'] = $imageName;
 
-        Pokemons::updateOrCreate(['id' => $this->pokemon_id], [
-            'name' => $this->name,
-            'hp' => $this->hp,
-            'weight' => $this->weight,
-            'height' => $this->height,
-            'type1' => $this->type1,
-            'type2' => $this->type2,
-            'image' => $imagePath,
-        ]);
-
+        Pokemons::create($validatedData);
         session()->flash('message',
             $this->pokemon_id ? 'Pokemon Updated Successfully.' : 'Pokemon Created Successfully.');
 

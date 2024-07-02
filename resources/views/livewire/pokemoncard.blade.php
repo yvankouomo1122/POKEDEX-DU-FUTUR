@@ -8,7 +8,7 @@
         <div wire:key="{{ $item->name }}"
             class="flex flex-col gap-3 border rounded-lg hover:cursor-pointer hover:shadow-3xl duration-300 transition-all relative">
 
-            <img src="sta/{{ $item->image }}" class="w-full aspect-square" alt="" srcset="">
+            <img src="{{ Storage::url($item->image) }}" class="w-full aspect-square" alt="" srcset="">
             <div class="font-thin p-5">
                 <h2 class="text-xl font-semibold">{{ $item->name }}</h2>
                 <p class="">{{ $item->weight }}kg</p>
