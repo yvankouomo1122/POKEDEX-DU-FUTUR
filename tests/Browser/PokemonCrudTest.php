@@ -14,17 +14,15 @@ class PokemonCrudTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('http://127.0.0.1:8000/')
                     ->clickLink('Pokemons')
-                    ->screenshot('pic')
                     ->press('Ajouter')
                     ->pause(2000)
-                    ->type('[wire\\:model="name"]', 'test')
+                    ->type('[wire\\:model="name"]', 'Good')
                     ->type('[wire\\:model="hp"]', 0)
                     ->type('[wire\\:model="weight"]', 0)
                     ->type('[wire\\:model="height"]', 0)
-                    ->attach('[wire\\:model="image"]', __DIR__.'\screenshots\pic.png')
+                    ->attach('[wire\\:model="image"]', dirname(dirname(__DIR__)).'\picachou.png')
                     ->press('Enregistrer')
-                    ->pause(5000)
-                    ->screenshot('screenshot');
+                    ->pause(5000);
         });
     }
 
@@ -38,19 +36,8 @@ class PokemonCrudTest extends DuskTestCase
         });
     }
 
-    // public function testUpdate()
-    // {
-    //     $this->browse(function (Browser $browser) {
-    //         $browser->visit('http://127.0.0.1:8000/')
-    //                 ->clickLink('Pokemons')
-    //                 ->assertSee('Modifier')
-    //                 ->assertSee('Supprimer');
-    //     });
-    // }
-
-    public function testDelete()
+    public function testUpdate()
     {
-        // $pokemon = Pokemons::first();
         Pokemons::factory()->create([
             'id' => 1997,
             'name' => 'test',
@@ -59,6 +46,28 @@ class PokemonCrudTest extends DuskTestCase
             'height' => 1,
             'image' => "image/test"
         ]);
+        $pokemon = Pokemons::where('id', 1997)->first();
+        $pokemon_name = $pokemon->name;
+        
+        $this->browse(function (Browser $browser) use ($pokemon, $pokemon_name) {
+            $browser->visit('http://127.0.0.1:8000/')
+                    ->clickLink('Pokemons')
+                    ->assertSee($pokemon->name);
+            
+            $browser->press('[wire\\:click="edit('.$pokemon->id.')"]')
+                ->pause(2000)
+                ->type('[wire\\:model="name"]', 'update_name')
+                ->type('[wire\\:model="hp"]', 20)
+                ->type('[wire\\:model="weight"]', 20)
+                ->type('[wire\\:model="height"]', 20)
+                ->press("Enregistrer")
+                ->pause(2000)
+                ->assertDontSee($pokemon_name);
+        });
+    }
+
+    public function testDelete()
+    {
         $pokemon = Pokemons::where('id', 1997)->first();
 
         $this->browse(function (Browser $browser) use($pokemon) {
@@ -75,5 +84,4 @@ class PokemonCrudTest extends DuskTestCase
             ]);
         });
     }
-
 }
