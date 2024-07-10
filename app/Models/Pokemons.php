@@ -21,7 +21,7 @@ class Pokemons extends Model
 
     public function types()
     {
-        return $this->belongsToMany(Type::class);
+        return $this->belongsToMany(Types::class);
     }
 
     public function attacks()

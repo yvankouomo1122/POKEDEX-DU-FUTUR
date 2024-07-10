@@ -16,15 +16,8 @@ use App\Http\Controllers\PokemonController;
 use App\Livewire\TypeManager;
 
 Route::get('/types', TypeManager::class);
-
 Route::get('/attacks', AttackManager::class);
-
-// Route::get('/attacks', [AttackController::class, 'index'])->name('attacks.index');
-
 Route::get('/pokemons', PokemonManager::class)->name('pokemons.index');
-
-
-
 Route::get('/', Pokemoncard::class);
 Route::get('/counter', Counter::class);
 Route::get('/details/{id?}', Details::class);
