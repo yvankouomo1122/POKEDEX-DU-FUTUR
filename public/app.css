@@ -1980,3 +1980,28 @@ video {
     --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
   }
 }
+
+.image-picker {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.image-picker label {
+  cursor: pointer;
+  margin: 5px;
+}
+
+.image-picker img {
+  width: 100px;
+  height: 100px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.image-picker img.selected {
+  border-color: #007bff;
+}
+
+.image-picker input[type="radio"] {
+  display: none;
+}

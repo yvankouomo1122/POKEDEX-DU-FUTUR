@@ -32,8 +32,15 @@
                                     @error('height') <span class="text-red-500">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="mt-4">
-                                    <input type="file" wire:model="image" class="form-input">
-                                    @error('image') <span class="text-red-500">{{ $message }}</span> @enderror
+                                    <label for="Image">Choisir une image :</label>
+                                    <div class="image-picker">
+                                        @foreach($images as $image_elt)
+                                        <label>
+                                            <input type="radio" name="image" wire:model='image' value="{{ $image_elt }}">
+                                            <img src="{{ asset('storage/images/'. $image_elt) }}" alt="{{ $image_elt }}" id="{{ $image_elt }}">
+                                        </label>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>

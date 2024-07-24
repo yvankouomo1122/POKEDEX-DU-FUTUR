@@ -17,7 +17,7 @@
             <a href="/">
                 <li
                     class="cursor-pointer border-b-4 border-gray-900 hover:border-gray-300 duration-300 transition-all py-3 px-2">
-                    Acceuil
+                    Accueil
                 </li>
             </a>
             <a href="/types">
@@ -44,6 +44,26 @@
     {{-- @yield('content') --}}
     @livewireScripts
 </body>
+<script>
+function attachEventListeners(){
+    var elt = document.querySelectorAll('input[name="image"]');
+    elt.forEach(function(radio){
+        radio.addEventListener('change', function(){
+            document.querySelectorAll('img').forEach(function(elt){
+                elt.classList.remove('selected');
+            });
+            document.querySelector('img[id="' + this.value + '"]').classList.add('selected');
+        });
+    });
+}
 
+var AddButton = document.querySelectorAll('button[name="ajouter"]');
+AddButton.forEach(function(button) {
+    button.addEventListener('click', function(){
+        setTimeout(function() {
+            attachEventListeners();
+        }, 1000);
+    });
+});
+</script>
 </html>
-{{-- Thierry@1234ebv --}}
