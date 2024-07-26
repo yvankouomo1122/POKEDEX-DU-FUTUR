@@ -72,3 +72,12 @@ Pour lancer les tests, il suffit d'entrer la commande suivante dans ton terminal
 ```bash
 php artisan dusk
 ```
+
+## INSTALLATION
+
+Installer les dépendances à l'aide de la commande suivante
+
+```bash
+npm install
+npm run build
+```

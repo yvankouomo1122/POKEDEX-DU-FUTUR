@@ -6,21 +6,30 @@ use App\Models\Pokemons;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Database\Factories\PokemonsFactory;
+use Exception;
 
 class PokemonCrudTest extends DuskTestCase
 {
     public function testCreate(): void
     {
-        $this->browse(function (Browser $browser) {
+        $pokemon = Pokemons::first();
+        if(!$pokemon){
+            throw new Exception('No Pokémon found.');
+        }
+        
+        $pokemon_image = $pokemon->image;
+        $pokemon_image = str_replace('images/', '', $pokemon_image);
+
+        $this->browse(function (Browser $browser) use ($pokemon_image){
             $browser->visit('http://127.0.0.1:8000/')
                     ->clickLink('Pokemons')
                     ->press('Ajouter')
                     ->pause(2000)
-                    ->type('[wire\\:model="name"]', 'Good')
-                    ->type('[wire\\:model="hp"]', 0)
-                    ->type('[wire\\:model="weight"]', 0)
-                    ->type('[wire\\:model="height"]', 0)
-                    ->attach('[wire\\:model="image"]', dirname(dirname(__DIR__)).'\picachou.png')
+                    ->type('[wire\\:model="name"]', 'Test')
+                    ->type('[wire\\:model="hp"]', 12)
+                    ->type('[wire\\:model="weight"]', 12)
+                    ->type('[wire\\:model="height"]', 12)
+                    ->click('[id="'.$pokemon_image.'"]')
                     ->press('Enregistrer')
                     ->pause(5000);
         });

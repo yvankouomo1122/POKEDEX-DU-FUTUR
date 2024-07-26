@@ -13,7 +13,7 @@ class PokemonManager extends Component
 {
     public $pokemons, $name, $hp, $weight, $height, $type1, $type2, $pokemon_id, $image;
     public $isOpen = 0;
-    public $images = ['pok1.png', 'pok2.png', 'pok1.png', 'pok2.png', 'pok1.png'];
+    public $images = ['picachou.png', 'pok1.png', 'pok2.png', 'pok3.png', 'pok4.png', 'pok5.png', 'pok6.png'];
 
     public function render()
     {
