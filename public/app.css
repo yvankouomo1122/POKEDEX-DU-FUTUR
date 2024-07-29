@@ -1980,3 +1980,82 @@ video {
     --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
   }
 }
+
+.image-picker {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.image-picker label {
+  cursor: pointer;
+  margin: 5px;
+}
+
+.image-picker img {
+  width: 100px;
+  height: 100px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.image-picker img.selected {
+  border-color: #007bff;
+}
+
+.image-picker img.selected:is(.dark *) {
+  border-color: #ff0000ee;
+}
+
+.image-picker input[type="radio"] {
+  display: none;
+}
+
+/* Dark mode background */
+.dark\:bg-gray-700:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity)) /* #374151 */;
+}
+.dark\:bg-gray-800:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity)) /* #1f2937 */;
+}
+.dark\:bg-gray-900:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity)) /* #111827 */;
+}
+
+/* Dark mode divider */
+.dark\:divide-gray-700:is(.dark *) > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(55 65 81 / var(--tw-divide-opacity)) /* #374151 */;
+}
+.dark\:divide-gray-700:is(.dark *) > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(55 65 81 / var(--tw-divide-opacity)) /* #374151 */;
+}
+
+/* Dark mode text */
+.dark\:text-gray-200:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity)) /* #e5e7eb */;
+}
+.dark\:text-gray-100:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity)) /* #f3f4f6 */;
+}
+
+/* Dark mode hover */
+.dark\:hover\:bg-gray-700:hover:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity)) /* #374151 */;
+}
+.dark\:hover\:bg-gray-800:hover:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity)) /* #1f2937 */;
+}
+
+/* Dark mode border */
+.dark\:border-gray-600:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity)) /* #4b5563 */;
+}

@@ -1,25 +1,25 @@
-<div class="container mx-auto">
+<div class="container mx-auto mt-20">
     @if($isOpen)
         @include('livewire.createp')
     @endif
 
-    <button wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">
+    <button name="ajouter" wire:click="create()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">
         Ajouter
     </button>
 
-    <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <thead class="bg-gray-50 dark:bg-gray-800">
             <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Npm</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PV</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Poids</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Taille</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Npm</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">PV</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Poids</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200  uppercase tracking-wider">Taille</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Actions</th>
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700 dark:text-white">
             @foreach($pokemons as $pokemon)
-                <tr>
+                <tr class="hover:bg-gray-100 dark:hover:bg-gray-800">
                     <td class="px-6 py-4 whitespace-nowrap">{{ $pokemon->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $pokemon->hp }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $pokemon->weight }}</td>

@@ -6,15 +6,14 @@ use Livewire\Component;
 use App\Models\Pokemons;
 use App\Models\Attack;
 use App\Models\Types;
-use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Log;
 
 
 class PokemonManager extends Component
 {
-    use WithFileUploads;
-    public $image, $saved_image;
-    public $pokemons, $name, $hp, $weight, $height, $type1, $type2, $pokemon_id;
+    public $pokemons, $name, $hp, $weight, $height, $type1, $type2, $pokemon_id, $image;
     public $isOpen = 0;
+    public $images = ['picachou.png', 'pok1.png', 'pok2.png', 'pok3.png', 'pok4.png', 'pok5.png', 'pok6.png'];
 
     public function render()
     {
@@ -40,13 +39,8 @@ class PokemonManager extends Component
                 'height' => 'required|numeric',
                 'type1' => 'nullable',
                 'type2' => 'nullable',
-                'image' => 'nullable|image|mimes:jpeg,png,svg,jpg,gif|max:10024',
+                'image' => 'required',
             ]);
-            if ($this->image == null){
-                $imageName = $this->saved_image;
-            }else{
-                $imageName = $this->image->store("images", 'public');
-            }
             Pokemons::updateOrCreate(['id' => $this->pokemon_id], [
                 'name' => $this->name,
                 'hp' => $this->hp,
@@ -54,7 +48,7 @@ class PokemonManager extends Component
                 'height' => $this->height,
                 'type1' => $this->type1,
                 'type2' => $this->type2,
-                'image' => $imageName,
+                'image' => "images/".$this->image,
             ]);
         }
         else {
@@ -65,10 +59,10 @@ class PokemonManager extends Component
                 'height' => 'required|numeric',
                 'type1' => 'nullable',
                 'type2' => 'nullable',
-                'image' => 'image|mimes:jpeg,png,svg,jpg,gif|max:10024',
+                'image' => 'required',
             ]);
-            $imageName = $this->image->store("images", 'public');
-            $validatedData['image'] = $imageName;
+            $image = "images/".$this->image;
+            $validatedData['image'] = $image;
             Pokemons::create($validatedData);
         }
 
@@ -87,7 +81,7 @@ class PokemonManager extends Component
         $this->hp = $pokemon->hp;
         $this->weight = $pokemon->weight;
         $this->height = $pokemon->height;
-        $this->saved_image = $pokemon->image;
+        $this->image = $pokemon->image;
 
         $this->openModal();
     }
