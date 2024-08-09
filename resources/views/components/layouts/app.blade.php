@@ -10,7 +10,7 @@
     @livewireStyles
 </head>
 
-<body class='dark:bg-black flex flex-col md:gap-5 h-full'>
+<body class='dark:bg-black dark:bg-none flex flex-col md:gap-5 h-full' style="background-image: url({{ asset('storage/images/background.jpg') }}); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
     <nav class="flex justify-between items-center bg-gray-900 px-10 text-gray-300 fixed z-10 w-full">
         <span class="text-xl font-semibold">Pokedex By Yvan KOUOMO</span>
         <ul class="flex gap-5">
