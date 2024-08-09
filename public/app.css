@@ -2023,6 +2023,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity)) /* #111827 */;
 }
+.dark\:bg-none:is(.dark *) {
+  background-image: none !important;
+}
 
 /* Dark mode divider */
 .dark\:divide-gray-700:is(.dark *) > :not([hidden]) ~ :not([hidden]) {
@@ -2058,4 +2061,9 @@ video {
 .dark\:border-gray-600:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(75 85 99 / var(--tw-border-opacity)) /* #4b5563 */;
+}
+
+/* Opacity */
+.bg-opacity-60{
+  background-color: rgba(255, 255, 255, 0.6);
 }
